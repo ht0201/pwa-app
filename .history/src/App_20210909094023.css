@@ -1,0 +1,7 @@
+.App li {
+  margin-right: 1rem;
+}
+
+.App .navbar-brand a {
+  text-decoration: none;
+}

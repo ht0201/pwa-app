@@ -1,0 +1,8 @@
+.App li.nav-item a,
+.App .navbar-brand a {
+  text-decoration: none;
+}
+
+.App li.active {
+  color: red;
+}

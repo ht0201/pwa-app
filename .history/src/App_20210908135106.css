@@ -1,0 +1,4 @@
+.App li.nav-item a,
+.App .nav-brand a {
+  text-decoration: none;
+}

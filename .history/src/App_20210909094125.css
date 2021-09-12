@@ -1,0 +1,6 @@
+.App li.nav-item a,
+.App .navbar-brand a {
+  text-decoration: none;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
