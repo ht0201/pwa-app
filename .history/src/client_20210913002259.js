@@ -72,7 +72,7 @@ export default function client() {
         console.log('Push Registered...', pushSub);
 
         console.log('Sending Push...');
-        return await fetch('http://localhost:8081/subscribe', {
+        await fetch('http://localhost:8081/subscribe', {
           method: 'POST',
           body: JSON.stringify(pushSub),
           headers: {
@@ -80,7 +80,9 @@ export default function client() {
           },
         });
       })
-
+      .then((resNotifi) => {
+        console.log('Push Sent...', resNotifi);
+      })
       .catch((err) => {
         console.log(err);
       });

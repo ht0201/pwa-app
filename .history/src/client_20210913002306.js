@@ -80,7 +80,9 @@ export default function client() {
           },
         });
       })
-
+      .then((resNotifi) => {
+        console.log('Push Sent...', resNotifi);
+      })
       .catch((err) => {
         console.log(err);
       });

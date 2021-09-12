@@ -59,7 +59,7 @@ export default function client() {
         console.log('Registering Push...');
         if (sub) return sub;
 
-        const response = await fetch('http://localhost:8081/vapidPublicKey');
+        const response = await fetch('http://localhost:4000/vapidPublicKey');
         const vapidPublicKey = await response.text();
         const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
 
@@ -72,13 +72,15 @@ export default function client() {
         console.log('Push Registered...', pushSub);
 
         console.log('Sending Push...');
-        return await fetch('http://localhost:8081/subscribe', {
+        await fetch('http://localhost:4000/subscribe', {
           method: 'POST',
           body: JSON.stringify(pushSub),
           headers: {
             'Content-type': 'application/json',
           },
         });
+
+        console.log('Push Sent...', pushSub);
       })
 
       .catch((err) => {

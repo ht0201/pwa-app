@@ -28,8 +28,8 @@
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "client": "react-scripts start",
-    "server": "cd src && PORT=8081 node server.js",
-    "dev": "concurrently -n 'server,client' -c 'blue,gray' \"yarn run server\" \"yarn run client\""
+    "server": "cd src PORT=8081 Node ./server.js",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\""
   },
   "eslintConfig": {
     "extends": [

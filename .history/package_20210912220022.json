@@ -23,13 +23,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "react-scripts start",
-    "client": "react-scripts start",
-    "server": "cd src && PORT=8081 node server.js",
-    "dev": "concurrently -n 'server,client' -c 'blue,gray' \"yarn run server\" \"yarn run client\""
+    "client": "yarn start",
+    "dev": "concurrently \"yarn run client\" \"node server.js\""
   },
   "eslintConfig": {
     "extends": [

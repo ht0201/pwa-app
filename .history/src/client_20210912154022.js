@@ -1,11 +1,13 @@
 export default function client() {
+  // let VAPID_PUBLIC_KEY =
+  //   'BGfOuB77WPqcWtWsLLc6jKt6zLKsWD0t6gXu60bdcb0qXWKlXpOeo61J8pa4_JoFuhN1PhtsqOmp0M3gvRYmdIE';
+
   function urlBase64ToUint8Array(base64String) {
     const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
     const base64 = (base64String + padding)
       .replace(/-/g, '+')
       .replace(/_/g, '/');
 
-    // eslint-disable-next-line no-restricted-globals
     const rawData = window.atob(base64);
     const outputArray = new Uint8Array(rawData.length);
 
@@ -33,6 +35,13 @@ export default function client() {
     });
   }
 
+  // function displayNotification() {
+  //   var options = {
+  //     body: 'Successfully subscribed Notification!',
+  //   };
+  //   new Notification('Successfully subscribed!', options);
+  // }
+
   /* register service worker */
   console.log('Registering service worker...');
   if ('serviceWorker' in navigator) {
@@ -59,28 +68,35 @@ export default function client() {
         console.log('Registering Push...');
         if (sub) return sub;
 
-        const response = await fetch('http://localhost:8081/vapidPublicKey');
-        const vapidPublicKey = await response.text();
-        const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
+        const response = await fetch('http://localhost:4000/vapidPublicKey');
+        // const vapidPublicKey = urlBase64ToUint8Array(response);
 
+        // let VAPID_PUBLIC_KEY =
+        //   'BBYv_6CDFrsQlljHZQd4SlcZNNt-V8fKNRHNmqe6tWJxV2yLzBg0jl8-FVPYWzz4hixZgdodBzh1WYf-QYHYTKo';
         return reg.pushManager.subscribe({
           userVisibleOnly: true,
-          applicationServerKey: convertedVapidKey,
+          applicationServerKey: response,
         });
       })
       .then(async (pushSub) => {
         console.log('Push Registered...', pushSub);
 
         console.log('Sending Push...');
-        return await fetch('http://localhost:8081/subscribe', {
+        await fetch('http://localhost:4000/subscribe', {
           method: 'POST',
           body: JSON.stringify(pushSub),
           headers: {
             'Content-type': 'application/json',
           },
         });
-      })
 
+        console.log('Push Sent...', pushSub);
+      })
+      // .then((resPush) => {
+      //   if (resPush.ok) {
+      //     displayNotification();
+      //   }
+      // })
       .catch((err) => {
         console.log(err);
       });
