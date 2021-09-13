@@ -8,10 +8,10 @@ PWAs provide a number of advantages to users — including being installable, pr
 
 Others component used in demo PWAs app
 
-Service worker
-Caching, working offiline
-Installable, enable add to home screen
-Push API and Notifications API  : create server.js by nodejs include route to received client call api.
+- Service worker.
+- Caching, working offiline.
+- Installable, enable add to home screen.
+- Push API and Notifications API  : create server.js by nodejs include route to received client call api.
 
 -----
 
